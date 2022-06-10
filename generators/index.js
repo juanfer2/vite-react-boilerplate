@@ -46,6 +46,11 @@ module.exports = (plop) => {
         type: 'add',
         path: '../src/hooks/{{camelCase name}}/index.tsx',
         templateFile: 'component/hook.tsx.hbs'
+      },
+      {
+        type: 'add',
+        path: '../src/hooks/{{camelCase name}}/{{camelCase name}}.spec.tsx',
+        templateFile: 'component/hook-test.tsx.hbs'
       }
     ]
   });

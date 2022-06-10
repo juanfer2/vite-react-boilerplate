@@ -22,7 +22,9 @@ module.exports = {
   env: {
     browser: true,
     amd: true,
-    node: true
+    node: true,
+    jest: true
+    // vitest: true
   },
   extends: [
     'eslint:recommended',
@@ -30,7 +32,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended' // Make sure this is always the last element in the array.
   ],
-  plugins: ['simple-import-sort', 'prettier'],
+  plugins: ['simple-import-sort', 'prettier', 'vitest'],
   globals: {
     React: true,
     google: true,
@@ -42,6 +44,8 @@ module.exports = {
     expect: true,
     jsdom: true,
     JSX: true
+    // vitest: true,
+    // jest: true
   },
   rules: {
     'prettier/prettier': ['error', {}, { usePrettierrc: true }],
@@ -51,6 +55,10 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    // 'react/require-default-props': "error",
+    'no-unused-vars': 'error',
+    'max-len': ['warn', { code: 100 }],
     'jsx-a11y/anchor-is-valid': [
       'error',
       {

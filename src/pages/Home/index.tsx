@@ -1,5 +1,7 @@
 import { Button } from '@mui/material';
 
+import Input from '@/components/Input';
+
 /*
 const Heading = styled('h1')`
   background-color: ${(props: any) => props.bg};
@@ -10,6 +12,8 @@ const Heading = styled('h1')`
 function Home() {
   return (
     <div>
+      <Input label="User" name="User" />
+
       <Button variant={'contained'} color={'primary'}>
         Click me
       </Button>
