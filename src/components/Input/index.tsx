@@ -1,46 +1,48 @@
 import { TextField } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import React from 'react';
 
 import { InputStyled } from './Input.styles';
 
 interface Props {
   name: string;
+  defaultValue?: string;
+  type?: string;
   label?: string;
   color?: 'error' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | undefined;
   focused?: true;
   errorMessage?: string;
+  control?: any;
 }
 
-const ValidationTextField = styled(TextField)({
-  '& input:valid + fieldset': {
-    borderColor: 'green',
-    borderWidth: 2
-  },
-  '& input:invalid + fieldset': {
-    borderColor: 'red',
-    borderWidth: 2
-  },
-  '& input:valid:focus + fieldset': {
-    borderLeftWidth: 6,
-    padding: '4px !important' // override inline-style
-  }
-});
+function Input({ name, type, defaultValue, label, color, focused, errorMessage, control }: Props) {
+  const controlRef = (control && control(name)) || {};
 
-function Input({ name, label, color, focused, errorMessage }: Props) {
   return (
     <InputStyled>
-      <ValidationTextField label={name} variant="outlined" defaultValue={'sucess'} />
+      <TextField
+        type={type}
+        label={label}
+        variant="outlined"
+        defaultValue={defaultValue}
+        color={color}
+        focused={focused}
+        name={name}
+        {...controlRef}
+      />
+
       {errorMessage && <p>{errorMessage}</p>}
     </InputStyled>
   );
 }
 
 Input.defaultProps = {
-  label: null,
-  color: null,
+  label: '',
+  defaultValue: null,
+  type: 'text',
+  color: 'primary',
   focused: false,
-  errorMessage: null
+  errorMessage: null,
+  control: null
 };
 
 export default Input;

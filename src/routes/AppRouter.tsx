@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Home from '@/pages/Home';
+import Login from '@/pages/Login';
 
 import PrivateRoute from './PrivateRoutes';
 
@@ -14,12 +15,19 @@ interface PageI {
 function RoutesConfig() {
   const pages = [
     {
+      name: 'home',
       path: '/',
       element: <Home />
     },
     {
+      name: 'page-not-found',
       path: '*',
       element: <div>Page not found</div>
+    },
+    {
+      name: 'login',
+      path: '/login',
+      element: <Login />
     }
   ];
 
