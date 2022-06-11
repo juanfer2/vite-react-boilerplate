@@ -1,29 +1,19 @@
 import { useEffect, useState } from 'react';
 
-import { getPullRequests } from '@/services/github_service';
+import { Character } from '@/models/character';
+import { getCharacters } from '@/services/rick-and-morty.service';
 
-export interface UsePullRequestsI {}
+export const useHome = () => {
+  const [characters, setCharacters] = useState<Character[]>([]);
 
-export const usePullRequests = () => {
-  const [pullRequestList, setPullRequestList] = useState<any[]>([]);
-
-  const prs = async () => {
-    const data = await getPullRequests({
-      owner: 'AyendaHoteles',
-      repo: 'ayenda',
-      state: 'open',
-      sort: 'created'
-    });
-
-    console.log(data);
-    const mePullRequests = data.filter((item: any) => item.assignee?.login === 'jfvilladiego');
-
-    setPullRequestList(mePullRequests);
+  const callCharacters = async () => {
+    const data: Character[] | Error = await getCharacters();
+    setCharacters(data as Character[]);
   };
 
   useEffect(() => {
-    prs();
+    callCharacters();
   }, []);
 
-  return { pullRequestList };
+  return { characters };
 };

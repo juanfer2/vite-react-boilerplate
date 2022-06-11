@@ -21,8 +21,8 @@ function RoutesConfig() {
     },
     {
       name: 'page-not-found',
-      path: '*',
-      element: <div>Page not found</div>
+      path: '/*',
+      element: <div>Page not found!!!</div>
     },
     {
       name: 'login',

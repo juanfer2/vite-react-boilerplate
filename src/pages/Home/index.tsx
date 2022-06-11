@@ -1,6 +1,9 @@
-import { Button } from '@mui/material';
+import { Card } from '@mui/material';
 
-import Input from '@/components/Input';
+import { Character } from '@/models/character';
+
+import { HomeStyled } from './home.styles';
+import { useHome } from './useHome';
 
 /*
 const Heading = styled('h1')`
@@ -10,22 +13,17 @@ const Heading = styled('h1')`
 */
 
 function Home() {
+  const { characters } = useHome();
+
   return (
-    <div>
-      <Input label="User" name="User" />
-
-      <Button variant={'contained'} color={'primary'}>
-        Click me
-      </Button>
-
-      <Button variant={'contained'} color={'secondary'}>
-        Click me
-      </Button>
-
-      <Button variant={'contained'} color={'error'}>
-        Click me
-      </Button>
-    </div>
+    <HomeStyled>
+      {characters &&
+        characters.map((character: Character) => (
+          <Card key={character.id}>
+            <img src={character.image} alt={character.name} />
+          </Card>
+        ))}
+    </HomeStyled>
   );
 }
 
