@@ -7,15 +7,15 @@ export const AxiosInterceptor = () => {
     },
     (error) => {
       if (error.response.status === 404) {
-        window.location.href = `/404`;
+        // window.location.href = `/404`;
       }
 
       if (error.response.status === 401 || error.response.status === 403) {
-        window.location.href = `/404`;
+        // window.location.href = `/404`;
       }
 
       if (error.response.status === 500 || error.response.status === 501) {
-        window.location.href = `/501`;
+        // window.location.href = `/501`;
       }
 
       if (error.response.status === 504) {
